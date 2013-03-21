@@ -1,0 +1,10 @@
+---
+- hosts: dev
+  user: harm
+  sudo: yes
+  tasks:
+    - apt: pkg=apt-file state=installed
+    - apt: pkg=htop state=installed
+    - apt: pkg=dnsutils state=installed
+    - apt: pkg=curl state=installed
+    - apt: pkg=ack-grep state=installed

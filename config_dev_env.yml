@@ -1,0 +1,29 @@
+---
+- hosts: dev
+  user: harm
+  sudo: yes
+  tasks:
+    - apt: pkg=vim state=installed
+    - apt: pkg=git state=installed
+    - name: copy vimrc
+      copy: src=files/vimrc dest=/home/harm/.vimrc
+      sudo: no
+    - name: create .vim config directory
+      file: path=/home/harm/.vim state=directory
+      sudo: no
+    - name: copy bundles.vim, makes sure vim can initial run without errors
+      copy: src=files/bundles.vim dest=/home/harm/.vim/bundles.vim
+      sudo: no
+    - file: path=/home/harm/.vim/bundle state=absent
+    - name: Get vundle for harm
+      command: git clone https://github.com/gmarik/vundle.git /home/harm/.vim/bundle/vundle
+      sudo: no
+    - name: Get all defined bundles
+      command: vim -u /home/harm/.vim/bundles.vim +BundleInstall +BundleClean +qall
+      sudo: no
+    - name: Copy gitconfig
+      copy: src=files/gitconfig dest=/home/harm/.gitconfig
+      sudo: no
+    - name: Copy gitignore
+      copy: src=files/gitignore dest=/home/harm/.gitignore
+      sudo: no
