@@ -3,8 +3,10 @@
   user: harm
   sudo: yes
   tasks:
-    - apt: pkg=apt-file state=installed
-    - apt: pkg=htop state=installed
-    - apt: pkg=dnsutils state=installed
-    - apt: pkg=curl state=installed
-    - apt: pkg=ack-grep state=installed
+    - apt: pkg=$item state=installed
+      with_items:
+        - apt-file
+        - htop
+        - dnsutils
+        - curl
+        - ack-grep

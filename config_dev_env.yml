@@ -3,8 +3,10 @@
   user: harm
   sudo: yes
   tasks:
-    - apt: pkg=vim state=installed
-    - apt: pkg=git state=installed
+    - apt: pkg=$item state=installed
+      with_items:
+        - vim
+        - git
     - name: copy vimrc
       copy: src=files/vimrc dest=/home/harm/.vimrc
       sudo: no
