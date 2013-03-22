@@ -2,30 +2,34 @@
 - hosts: dev
   user: harm
   sudo: yes
+  vars:
+    home: /home/harm
   tasks:
     - apt: pkg=$item state=installed
       with_items:
         - vim
         - git
-    - name: copy vimrc
-      copy: src=files/vimrc dest=/home/harm/.vimrc
+    - name: get my dotfiles
+      git: repo=https://github.com/haarts/dotfiles.git dest=$home/.dotfiles
+    - name: link vimrc
+      file: src=$home/.dotfiles/vimrc path=$home/.vimrc
       sudo: no
     - name: create .vim config directory
-      file: path=/home/harm/.vim state=directory
+      file: path=$home/.vim state=directory
       sudo: no
-    - name: copy bundles.vim, makes sure vim can initial run without errors
-      copy: src=files/bundles.vim dest=/home/harm/.vim/bundles.vim
+    - name: links bundles.vim, makes sure vim can initial run without errors
+      file: src=$home/.dotfiles/bundles.vim dest=$home/.vim/bundles.vim
       sudo: no
-    - file: path=/home/harm/.vim/bundle state=absent
+    - file: path=$home/.vim/bundle state=absent
     - name: Get vundle for harm
-      command: git clone https://github.com/gmarik/vundle.git /home/harm/.vim/bundle/vundle
+      command: git clone https://github.com/gmarik/vundle.git $home/.vim/bundle/vundle
       sudo: no
     - name: Get all defined bundles
-      command: vim -u /home/harm/.vim/bundles.vim +BundleInstall +BundleClean +qall
+      command: vim -u $home/.vim/bundles.vim +BundleInstall +BundleClean +qall
       sudo: no
-    - name: Copy gitconfig
-      copy: src=files/gitconfig dest=/home/harm/.gitconfig
+    - name: Link gitconfig
+      file: src=$home/.dotfiles/gitconfig path=$home/.gitconfig
       sudo: no
-    - name: Copy gitignore
-      copy: src=files/gitignore dest=/home/harm/.gitignore
+    - name: Link gitignore
+      file: src=$home/.dotfiles/gitignore path=$home/.gitignore
       sudo: no
