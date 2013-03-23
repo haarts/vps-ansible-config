@@ -1,7 +1,7 @@
 ---
 - hosts: dev
   user: harm
-  sudo: yes
+  sudo: no
   vars:
     home: /home/harm
   tasks:
@@ -9,31 +9,34 @@
       with_items:
         - vim
         - git
+      sudo: yes
     - name: get my dotfiles
       git: repo=https://github.com/haarts/dotfiles.git dest=$home/.dotfiles
+      sudo: no
+
+    # Zsh stuff
+    - name: link zshenv
+      file: src=$home/.dotfiles/zshenv path=$home/.zshenv
+    - name: link zlogin
+      file: src=$home/.dotfiles/zlogin path=$home/.zlogin
+    - name: link zshrc
+      file: src=$home/.dotfiles/zshrc path=$home/.zshrc
 
     # Vim stuff
     - name: link vimrc
       file: src=$home/.dotfiles/vimrc path=$home/.vimrc
-      sudo: no
     - name: create .vim config directory
       file: path=$home/.vim state=directory
-      sudo: no
     - name: links bundles.vim, makes sure vim can initial run without errors
       file: src=$home/.dotfiles/bundles.vim dest=$home/.vim/bundles.vim
-      sudo: no
     - file: path=$home/.vim/bundle state=absent
     - name: Get vundle for harm
       git: repo=https://github.com/gmarik/vundle.git dest=$home/.vim/bundle/vundle
-      sudo: no
     - name: Get all defined bundles
       command: vim -u $home/.vim/bundles.vim +BundleInstall +BundleClean +qall
-      sudo: no
 
     # Git stuff
     - name: Link gitconfig
       file: src=$home/.dotfiles/gitconfig path=$home/.gitconfig
-      sudo: no
     - name: Link gitignore
       file: src=$home/.dotfiles/gitignore path=$home/.gitignore
-      sudo: no
