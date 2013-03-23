@@ -11,6 +11,8 @@
         - git
     - name: get my dotfiles
       git: repo=https://github.com/haarts/dotfiles.git dest=$home/.dotfiles
+
+    # Vim stuff
     - name: link vimrc
       file: src=$home/.dotfiles/vimrc path=$home/.vimrc
       sudo: no
@@ -22,11 +24,13 @@
       sudo: no
     - file: path=$home/.vim/bundle state=absent
     - name: Get vundle for harm
-      command: git clone https://github.com/gmarik/vundle.git $home/.vim/bundle/vundle
+      git: repo=https://github.com/gmarik/vundle.git dest=$home/.vim/bundle/vundle
       sudo: no
     - name: Get all defined bundles
       command: vim -u $home/.vim/bundles.vim +BundleInstall +BundleClean +qall
       sudo: no
+
+    # Git stuff
     - name: Link gitconfig
       file: src=$home/.dotfiles/gitconfig path=$home/.gitconfig
       sudo: no
