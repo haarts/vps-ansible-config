@@ -25,6 +25,3 @@
       authorized_key: user=harm key="$chromebook_public_key"
     - name: add macbook key
       authorized_key: user=harm key="$macbook_public_key"
-    - copy: src=files/zshenv dest=/home/harm/.zshenv
-    - copy: src=files/zshrc dest=/home/harm/.zshrc
-    - copy: src=files/zlogin dest=/home/harm/.zlogin
