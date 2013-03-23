@@ -16,19 +16,19 @@
 
     # Zsh stuff
     - name: link zshenv
-      file: src=$home/.dotfiles/zshenv path=$home/.zshenv
+      file: src=$home/.dotfiles/zshenv path=$home/.zshenv state=link
     - name: link zlogin
-      file: src=$home/.dotfiles/zlogin path=$home/.zlogin
+      file: src=$home/.dotfiles/zlogin path=$home/.zlogin state=link
     - name: link zshrc
-      file: src=$home/.dotfiles/zshrc path=$home/.zshrc
+      file: src=$home/.dotfiles/zshrc path=$home/.zshrc state=link
 
     # Vim stuff
     - name: link vimrc
-      file: src=$home/.dotfiles/vimrc path=$home/.vimrc
+      file: src=$home/.dotfiles/vimrc path=$home/.vimrc state=link
     - name: create .vim config directory
       file: path=$home/.vim state=directory
     - name: links bundles.vim, makes sure vim can initial run without errors
-      file: src=$home/.dotfiles/bundles.vim dest=$home/.vim/bundles.vim
+      file: src=$home/.dotfiles/bundles.vim path=$home/.vim/bundles.vim state=link
     - file: path=$home/.vim/bundle state=absent
     - name: Get vundle for harm
       git: repo=https://github.com/gmarik/vundle.git dest=$home/.vim/bundle/vundle
@@ -37,6 +37,6 @@
 
     # Git stuff
     - name: Link gitconfig
-      file: src=$home/.dotfiles/gitconfig path=$home/.gitconfig
+      file: src=$home/.dotfiles/gitconfig path=$home/.gitconfig state=link
     - name: Link gitignore
-      file: src=$home/.dotfiles/gitignore path=$home/.gitignore
+      file: src=$home/.dotfiles/gitignore path=$home/.gitignore state=link
