@@ -10,3 +10,4 @@
         - dnsutils
         - curl
         - ack-grep
+        - tmux
