@@ -40,3 +40,7 @@
       file: src=$home/.dotfiles/gitconfig path=$home/.gitconfig state=link
     - name: Link gitignore
       file: src=$home/.dotfiles/gitignore path=$home/.gitignore state=link
+
+    # Tmux stuff
+    - name: Link tmux.conf
+      file: src=$home/.dotfiles/tmux.conf path=$home/.tmux.conf state=link
