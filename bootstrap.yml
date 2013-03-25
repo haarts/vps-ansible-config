@@ -17,6 +17,8 @@
     - copy: src=files/sudoer_admin dest=/etc/sudoers.d/admin_group mode=440
     - name: install ZSH
       apt: pkg=zsh state=installed
+    - name: touch zshrc so we can login without questions
+      command: touch /home/harm/.zshrc ; chown harm:admin /home/harm/.zshrc
     - name: add sane locale
       command: locale-gen en_US.UTF-8
     - command: update-locale LANG=en_US.UTF-8
