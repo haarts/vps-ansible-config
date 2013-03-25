@@ -5,10 +5,12 @@
   vars:
     home: /home/harm
   tasks:
-    - apt: pkg=$item state=installed
-      with_items:
-        - vim
-        - git
+    - apt: pkg=vim state=installed
+      sudo: yes
+    - name: get Git from PPA
+      command: apt-add-repository ppa:git-core/ppa -y
+      sudo: yes
+    - apt: pkg=git state=installed
       sudo: yes
     - name: get my dotfiles
       git: repo=https://github.com/haarts/dotfiles.git dest=$home/.dotfiles
