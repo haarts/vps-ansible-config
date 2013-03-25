@@ -14,7 +14,7 @@
       command: apt-get update
     - command: apt-get install python-apt -y
     - group: name=admin state=present
-    - copy: src=files/sudoer_admin dest=/etc/sudoers.d/admin_group
+    - copy: src=files/sudoer_admin dest=/etc/sudoers.d/admin_group mode=440
     - name: install ZSH
       apt: pkg=zsh state=installed
     - name: add sane locale
