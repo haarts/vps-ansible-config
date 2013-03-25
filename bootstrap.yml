@@ -2,7 +2,7 @@
 - hosts: dev
   user: root # vagrant #
   sudo: no # yes #
-  vars_file:
+  vars_files:
     - vars/sensitive_user_data.yml
   vars:
     # created with:
