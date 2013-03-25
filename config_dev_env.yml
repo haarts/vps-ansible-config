@@ -21,6 +21,8 @@
       file: src=$home/.dotfiles/zshenv path=$home/.zshenv state=link
     - name: link zlogin
       file: src=$home/.dotfiles/zlogin path=$home/.zlogin state=link
+    - name: remove touched zshrc
+      file: path=$home/.zshrc state=absent
     - name: link zshrc
       file: src=$home/.dotfiles/zshrc path=$home/.zshrc state=link
 
