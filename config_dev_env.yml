@@ -48,3 +48,17 @@
     # Tmux stuff
     - name: Link tmux.conf
       file: src=$home/.dotfiles/tmux.conf path=$home/.tmux.conf state=link
+
+    # Packages for Rails dev
+    - name: Install packages required for a lot of Rails dev
+      apt: pkg=$item state=installed
+      with_items:
+        - libxml2-dev
+        - libxslt1-dev
+        - libmysqlclient-dev
+        - libqtwebkit-dev
+        - libpq-dev
+        - nodejs
+        - wamerican
+        - tig
+        - libsqlite3-dev
