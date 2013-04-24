@@ -23,5 +23,5 @@
     - name: Install S3QL
       apt: pkg=s3ql update-cache=yes state=installed
     - name: Copy the unattended upgrades file
-      copy: src=files/unattended-upgrades dest=/etc/apt/apt.conf.d/49unattended-upgrades
+      copy: src=files/50unattended-upgrades dest=/etc/apt/apt.conf.d/49unattended-upgrades
 
