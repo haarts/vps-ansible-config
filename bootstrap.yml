@@ -25,6 +25,9 @@
       authorized_key: user=harm key="$macbook_public_key"
     - name: add VPS key
       authorized_key: user=harm key="{{ lookup('file', '/home/harm/.ssh/id_rsa.pub') }}"
+    - name: copy public and private key
+      copy: src=/home/harm/.ssh/id_rsa.pub dest=/home/harm/.ssh/id_rsa.pub mode=0644
+    - copy: src=/home/harm/.ssh/id_rsa dest=/home/harm/.ssh/id_rsa mode=0600
     - name: touch zshrc so we can login without questions
       command: touch /home/harm/.zshrc ; chown harm:admin /home/harm/.zshrc
     - name: add sane locale
