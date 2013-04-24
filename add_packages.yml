@@ -12,6 +12,12 @@
         - ack-grep
         - tmux
         - unattended-upgrades
+    - name: Add packages for future Ansibles
+      apt: pkg=$item state=installed
+      with_items:
+        - python-yaml
+        - python-jinja2
+        - python-paramiko
     - name: Add S3QL PPA for my remote drive
       command: add-apt-repository ppa:nikratio/s3ql -y
     - name: Install S3QL
