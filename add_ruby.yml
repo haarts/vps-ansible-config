@@ -6,7 +6,7 @@
     - command: apt-get clean
     - apt: update_cache=yes
     - name: add Brightbox PPA and install Ruby
-      apt: pkg=python-software-properties state=installed update-cache=yes
+      apt: pkg=software-properties-common state=installed update-cache=yes
     - command: apt-add-repository ppa:brightbox/ruby-ng-experimental -y
     - apt: pkg=ruby1.9.3 update-cache=yes state=installed
     - gem: name=bundler state=present
