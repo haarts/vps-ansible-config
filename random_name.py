@@ -25,7 +25,6 @@ def haiku():
           "frog", "smoke", "star"
       ]
     hex = "0123456789abcdef"
-    return (random.choice(adjs) + "-" + random.choice(nouns) + "-" + 
-              random.choice(hex) + random.choice(hex) + random.choice(hex) + random.choice(hex) + random.choice(hex))
+    return (random.choice(adjs) + "-" + random.choice(nouns))
 
 print haiku()
