@@ -63,3 +63,5 @@
         - wamerican
         - tig
         - libsqlite3-dev
+        - postgresql
+        - mysql-server
