@@ -65,3 +65,7 @@
         - libsqlite3-dev
         - postgresql
         - mysql-server
+
+    # Add postgres user
+    - name: Add Postgres user
+      postgres_user: name=harm password=123456
