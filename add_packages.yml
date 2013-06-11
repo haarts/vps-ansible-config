@@ -12,6 +12,7 @@
         - ack-grep
         - tmux
         - unattended-upgrades
+        - build-essential
     - name: Add packages for future Ansibles
       apt: pkg=$item state=installed
       with_items:

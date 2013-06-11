@@ -9,5 +9,6 @@
       apt: pkg=software-properties-common state=installed update-cache=yes
     - command: apt-add-repository ppa:brightbox/ruby-ng-experimental -y
     - apt: pkg=ruby2.0 update-cache=yes state=installed
+    - apt: pkg=ruby2.0-dev state=installed
     - gem: name=bundler state=present
     - gem: name=pry state=present
