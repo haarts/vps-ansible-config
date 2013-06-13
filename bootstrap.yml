@@ -15,7 +15,10 @@
     - command: apt-get install python-apt -y
     - group: name=admin state=present
     - copy: src=files/sudoer_admin dest=/etc/sudoers.d/admin_group mode=440
-    - name: install ZSH
+    - name: copy Fish
+      copy: src=files/fish_2.0.0-201306122200_amd64.deb dest=/tmp/fish.deb
+    - name: install Fish
+      command: dpkg -i /tmp/fish.deb
       apt: pkg=zsh state=installed
     - name: add harm user
       user: name=harm password=$password shell=/bin/zsh group=admin
@@ -25,11 +28,9 @@
       authorized_key: user=harm key="$macbook_public_key"
     - name: add VPS key
       authorized_key: user=harm key="{{ lookup('file', '/home/pi/.ssh/id_rsa.pub') }}"
-    #- name: Take our current identity with us; copy public and private key
-    #  copy: src=/home/harm/.ssh/id_rsa.pub dest=/home/harm/.ssh/id_rsa.pub mode=0644 owner=harm group=admin
-    #- copy: src=/home/harm/.ssh/id_rsa dest=/home/harm/.ssh/id_rsa mode=0600 owner=harm group=admin
-    - name: touch zshrc so we can login without questions
-      command: touch /home/harm/.zshrc ; chown harm:admin /home/harm/.zshrc
+    - name: Take our current identity with us; copy public and private key
+      copy: src=/home/harm/.ssh/id_rsa.pub dest=/home/harm/.ssh/id_rsa.pub mode=0644 owner=harm group=admin
+    - copy: src=/home/harm/.ssh/id_rsa dest=/home/harm/.ssh/id_rsa mode=0600 owner=harm group=admin
     - name: add sane locale
       command: locale-gen en_US.UTF-8
     - command: update-locale LANG=en_US.UTF-8
