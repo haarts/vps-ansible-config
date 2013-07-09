@@ -7,6 +7,9 @@
   tasks:
     - apt: pkg=vim state=installed
       sudo: yes
+    - name: make sure we can add PPAs
+      sudo: yes
+      apt: pkg=software-properties-common state=installed update-cache=yes
     - name: get Git from PPA
       apt_repository: repo=ppa:git-core/ppa
       sudo: yes
@@ -20,7 +23,7 @@
     - name: create .config
       file: path=$home/.config/fish state=directory
     - name: link Fish functions
-      file: src=$home/.dotfiles/fish/functions path=$home/.config/fish state=link
+      file: src=$home/.dotfiles/fish/ path=$home/.config/fish/functions state=link
 
     # Vim stuff
     - name: link vimrc
