@@ -20,7 +20,7 @@
     - name: install Fish
       command: dpkg -i /tmp/fish.deb
     - name: add harm user
-      user: name=harm password=$password shell=/bin/zsh group=admin
+      user: name=harm password=$password shell=/usr/bin/fish group=admin
     - name: add chromebook key
       authorized_key: user=harm key="$chromebook_public_key"
     - name: add macbook key
