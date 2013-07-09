@@ -19,7 +19,6 @@
       copy: src=files/fish_2.0.0-201306122200_amd64.deb dest=/tmp/fish.deb
     - name: install Fish
       command: dpkg -i /tmp/fish.deb
-      apt: pkg=zsh state=installed
     - name: add harm user
       user: name=harm password=$password shell=/bin/zsh group=admin
     - name: add chromebook key
