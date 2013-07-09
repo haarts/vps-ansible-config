@@ -65,6 +65,12 @@
         - postgresql
         - mysql-server
 
+    - name: install debs for Ansible's postgresql modules
+      apt: pkg=$item state=installed
+      sudo: true
+      with_items:
+        - libpq-dev
+        - python-psycopg2
     # Add postgres user
     - name: Add Postgres user
       postgresql_user: name=harm password=123456
