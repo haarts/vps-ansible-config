@@ -19,6 +19,7 @@
         - python-yaml
         - python-jinja2
         - python-paramiko
+        - sshpass
     - name: Copy the unattended upgrades file
       copy: src=files/50unattended-upgrades dest=/etc/apt/apt.conf.d/49unattended-upgrades
 
