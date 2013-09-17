@@ -19,6 +19,13 @@
       git: repo=https://github.com/haarts/dotfiles.git dest=$home/.dotfiles
       sudo: no
 
+    # Get Mosh
+    - name: get Mosh from PPA
+      apt_repository: repo=ppa:keithw/mosh
+      sudo: yes
+    - apt: pkg=mosh update-cache=yes state=installed
+      sudo: yes
+
     # Fish stuff
     - name: create .config
       file: path=$home/.config/fish state=directory
@@ -72,5 +79,5 @@
         - libpq-dev
         - python-psycopg2
     # Add postgres user
-    - name: Add Postgres user
-      postgresql_user: name=harm password=123456
+    #- name: Add Postgres user
+      #postgresql_user: name=harm password=123456
