@@ -5,6 +5,9 @@
   vars:
     home: /home/harm
   tasks:
+    - name: Install Ctags so we can find function defs easy
+      apt: pkg=exuberant-ctags state=installed
+      sudo: yes
     - apt: pkg=vim state=installed
       sudo: yes
     - name: make sure we can add PPAs
